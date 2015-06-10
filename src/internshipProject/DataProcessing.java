@@ -35,8 +35,8 @@ public class DataProcessing {
 				sequencer.open();
 			}
 			// each note will get its own track
-			Track[] track = new Track[13];
 			Sequence sequence = new Sequence(Sequence.PPQ, 16);
+			Track[] track = sequence.createTrack()[13]; // check if this is valid
 			for (int i = 0; i < 16; i++) {
 				int currentTimeSegment = i;
 				for (int j = 0; j < 13; j++) {
