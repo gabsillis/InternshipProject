@@ -1,8 +1,5 @@
 
-
-
 import javax.sound.midi.*;
-
 import java.io.*;
 import java.util.*;
 
@@ -11,9 +8,6 @@ public class DataProcessing {
 
 	boolean[][] input = new boolean[13][16]; //TODO: get input
 	// testing code
-	input[3][6] = true;
-	input[5][7] = true;
-	input[7[9]] = true;
 	
 	public MidiEvent toNote(int number, int time){
 		ShortMessage msg = new ShortMessage();
@@ -38,16 +32,15 @@ public class DataProcessing {
 			} else {
 				sequencer.open();
 			}
-			// each note will get its own track
 			Sequence sequence = new Sequence(Sequence.PPQ, 16);
-			Track[] track = sequence.createTrack()[13]; // check if this is valid
+			Track track = sequence.createTrack(); // check if this is valid
 			for (int i = 0; i < 16; i++) {
 				int currentTimeSegment = i;
 				for (int j = 0; j < 13; j++) {
 					if (input[i][j] == true){
 						
-						track[i].add(toNote(i/*note*/,j/*time*/));
-						track[i].add(toNoteStop(i, j));
+						track.add(toNote(i/*note*/,j/*time*/));
+						track.add(toNoteStop(i, j));
 					}
 				}
 			}
@@ -61,4 +54,5 @@ public class DataProcessing {
 			e.printStackTrace();
 		}
 	}
+}
 }
