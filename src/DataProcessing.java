@@ -1,5 +1,6 @@
 
 import javax.sound.midi.*;
+
 import java.io.*;
 import java.util.*;
 
@@ -12,14 +13,24 @@ public class DataProcessing {
 	
 	public MidiEvent toNote(int number, int time){
 		ShortMessage msg = new ShortMessage();
-		msg.setMessage(ShortMessage.NOTE_ON, 1, 60 + number, VOLUME);
+		try {
+			msg.setMessage(ShortMessage.NOTE_ON, 1, 60 + number, VOLUME);
+		} catch (InvalidMidiDataException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		MidiEvent event = new MidiEvent(msg, time);
 		return event;
 	}
 	
 	public MidiEvent toNoteStop(int number, int time){
 		ShortMessage msg = new ShortMessage();
-		msg.setMessage(ShortMessage.NOTE_OFF, 1, 60 + number, VOLUME);
+		try {
+			msg.setMessage(ShortMessage.NOTE_OFF, 1, 60 + number, VOLUME);
+		} catch (InvalidMidiDataException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		MidiEvent event = new MidiEvent(msg,time+1);
 		return event;
 	}
@@ -61,4 +72,4 @@ public class DataProcessing {
 		}
 	}
 }
-}
+
