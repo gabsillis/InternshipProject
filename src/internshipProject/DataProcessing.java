@@ -9,6 +9,7 @@ public class DataProcessing {
 	boolean[][] input = new boolean[13][16]; //TODO: get input
 	// testing code
 	
+	
 	public MidiEvent toNote(int number, int time){
 		ShortMessage msg = new ShortMessage();
 		msg.setMessage(ShortMessage.NOTE_ON, 1, 60 + number, VOLUME);
@@ -24,6 +25,11 @@ public class DataProcessing {
 	}
 
 	public void process() {
+		// test code
+		input[3][2] = true;
+		input[5][7] = true;
+		input[8][3] = true;
+		// end test code
 		try {
 			Sequencer sequencer;
 			sequencer = MidiSystem.getSequencer();
