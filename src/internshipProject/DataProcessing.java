@@ -1,13 +1,29 @@
 package internshipProject;
 
+
 import javax.sound.midi.*;
 
 import java.io.*;
 import java.util.*;
 
 public class DataProcessing {
+	public static final int VOLUME = 80
 
 	boolean[][] input = new boolean[13][16];
+	
+	public void toNote(int number, int time){
+		ShortMessage msg = new ShortMessage();
+		msg.setMessage(ShortMessage.NOTE_ON, 1, 60 + number, VOLUME);
+		MidiEvent event = new MidiEvent(msg, time);
+		return event;
+	}
+	
+	public void toNoteStop(int number, int time){
+		ShortMessage msg = new ShortMessage();
+		msg.setMessage(ShortMessage.NOTE_OFF, 1, 60 + number, VOLUME);
+		MidiEvent event = new MidiEvent(msg,time+1);
+		return event;
+	}
 
 	public void process() {
 		try {
@@ -24,7 +40,11 @@ public class DataProcessing {
 			for (int i = 0; i < 16; i++) {
 				int currentTimeSegment = i;
 				for (int j = 0; j < 13; j++) {
-					
+					if (input[i][j] == true){
+						
+						track[i].add(toNote(i/*note*/,j/*time*/));
+						track[i].add(toNoteStop(i, j);)
+					}
 				}
 			}
 			int[] allowedTypes = MidiSystem.getMidiFileTypes(sequence);
