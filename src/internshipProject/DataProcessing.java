@@ -9,7 +9,11 @@ import java.util.*;
 public class DataProcessing {
 	public static final int VOLUME = 80
 
-	boolean[][] input = new boolean[13][16];
+	boolean[][] input = new boolean[13][16]; //TODO: get input
+	// testing code
+	input[3][6] = true;
+	input[5][7] = true;
+	input[7[9]] = true;
 	
 	public void toNote(int number, int time){
 		ShortMessage msg = new ShortMessage();
@@ -43,7 +47,7 @@ public class DataProcessing {
 					if (input[i][j] == true){
 						
 						track[i].add(toNote(i/*note*/,j/*time*/));
-						track[i].add(toNoteStop(i, j);)
+						track[i].add(toNoteStop(i, j));
 					}
 				}
 			}
