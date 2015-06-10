@@ -1,4 +1,4 @@
-package internshipProject;
+
 
 
 import javax.sound.midi.*;
@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 public class DataProcessing {
-	public static final int VOLUME = 80
+	public static final int VOLUME = 80;
 
 	boolean[][] input = new boolean[13][16]; //TODO: get input
 	// testing code
@@ -15,14 +15,14 @@ public class DataProcessing {
 	input[5][7] = true;
 	input[7[9]] = true;
 	
-	public void toNote(int number, int time){
+	public MidiEvent toNote(int number, int time){
 		ShortMessage msg = new ShortMessage();
 		msg.setMessage(ShortMessage.NOTE_ON, 1, 60 + number, VOLUME);
 		MidiEvent event = new MidiEvent(msg, time);
 		return event;
 	}
 	
-	public void toNoteStop(int number, int time){
+	public MidiEvent toNoteStop(int number, int time){
 		ShortMessage msg = new ShortMessage();
 		msg.setMessage(ShortMessage.NOTE_OFF, 1, 60 + number, VOLUME);
 		MidiEvent event = new MidiEvent(msg,time+1);
