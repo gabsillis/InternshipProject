@@ -57,7 +57,9 @@ public class DataProcessing {
 					if (input[i][j] == true){
 						
 						track.add(toNote(i/*note*/,j/*time*/));
-						track.add(toNoteStop(i, j));
+						if(input[i+1][j] != true){
+							track.add(toNoteStop(i, j));
+						}
 					}
 				}
 			}
@@ -65,7 +67,16 @@ public class DataProcessing {
 		    if (allowedTypes.length == 0) {
 		        System.err.println("No supported MIDI file types.");
 		    } else {
-			MidiSystem.write(sequence, allowedTypes[0], new File("file.midi"));
+		    	String tempDir = System.getProperty("user.home") + "\\midirecord";
+				File tmpDir = new File(tempDir);
+				if(!tmpDir.exists()){
+					tmpDir.mkdir();
+				}
+				if (tmpDir.isFile()){
+					System.err.println(tmpDir + " is a file");
+					System.exit(1);
+				}
+				MidiSystem.write(sequence, allowedTypes[0], new File(tempDir,"file.midi"));
 		    }
 		} catch (Exception e) {
 			e.printStackTrace();
