@@ -43,7 +43,11 @@ public class DataProcessing {
 		// end test code
 		try {
 			Sequencer sequencer;
-			sequencer = MidiSystem.getSequencer();
+			try{
+				sequencer = MidiSystem.getSequencer();
+			}catch(LineUnavailibleException){
+			System.out.println("Check to see if midisystem is in use");
+			}
 			if (sequencer == null){
 				System.out.println("midisystem in use");
 			} else {
