@@ -1,5 +1,6 @@
 
 import javax.sound.midi.*;
+import javax.sound.sampled.LineUnavailableException;
 
 import java.io.*;
 import java.util.*;
@@ -43,11 +44,7 @@ public class DataProcessing {
 		// end test code
 		try {
 			Sequencer sequencer;
-			try{
 				sequencer = MidiSystem.getSequencer();
-			}catch(LineUnavailibleException){
-			System.out.println("Check to see if midisystem is in use");
-			}
 			if (sequencer == null){
 				System.out.println("midisystem in use");
 			} else {
