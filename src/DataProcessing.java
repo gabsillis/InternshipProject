@@ -58,7 +58,10 @@ public class DataProcessing {
 			} else {
 				device.open();
 			}
-			Sequence sequence = new Sequence(Sequence.PPQ, 16);
+			Sequencer sequencer;
+			//might not need a sequencer
+			Sequence sequence = new Sequence(Sequence.PPQ,1);
+			
 			Track track = sequence.createTrack(); // check if this is valid
 			for (int i = 0; i < 13; i++) {
 				System.out.println(i);
