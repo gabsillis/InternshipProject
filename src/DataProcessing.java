@@ -77,7 +77,7 @@ public class DataProcessing {
 		    if (allowedTypes.length == 0) {
 		        System.err.println("No supported MIDI file types.");
 		    } else {
-		    	String tempDir = System.getProperty("user.home") + "\\midirecord";
+		    	String tempDir = System.getProperty("user.home") + "/midirecord";
 				File tmpDir = new File(tempDir);
 				if(!tmpDir.exists()){
 					tmpDir.mkdir();
