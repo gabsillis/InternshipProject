@@ -43,12 +43,20 @@ public class DataProcessing {
 		input[8][3] = true;
 		// end test code
 		try {
-			Sequencer sequencer;
-				sequencer = MidiSystem.getSequencer();
-			if (sequencer == null){
+			MidiDevice.Info[] infos = MidiSystem.getMidiDeviceInfo();
+			MidiDevice device = null;
+			for (int i = 0; i< infos.length; i++){
+				device = MidiSystem.getMidiDevice(infos[i]);
+			
+				if(device instanceof Sequencer){
+					System.out.println(device.getDeviceInfo());
+					break;
+				}
+			}
+			if (device == null){
 				System.out.println("midisystem in use");
 			} else {
-				sequencer.open();
+				device.open();
 			}
 			Sequence sequence = new Sequence(Sequence.PPQ, 16);
 			Track track = sequence.createTrack(); // check if this is valid
@@ -58,7 +66,7 @@ public class DataProcessing {
 					if (input[i][j] == true){
 						
 						track.add(toNote(i/*note*/,j/*time*/));
-						if(input[i+1][j] != true){
+						if(i<16 && input[i+1][j] != true){
 							track.add(toNoteStop(i, j));
 						}
 					}
