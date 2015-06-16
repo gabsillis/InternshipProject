@@ -60,9 +60,10 @@ public class DataProcessing {
 			}
 			Sequence sequence = new Sequence(Sequence.PPQ, 16);
 			Track track = sequence.createTrack(); // check if this is valid
-			for (int i = 0; i < 16; i++) {
+			for (int i = 0; i < 13; i++) {
+				System.out.println(i);
 				int currentTimeSegment = i;
-				for (int j = 0; j < 13; j++) {
+				for (int j = 0; j < 16; j++) {
 					if (input[i][j] == true){
 						
 						track.add(toNote(i/*note*/,j/*time*/));
