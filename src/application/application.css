@@ -1,0 +1,17 @@
+.buttonEffects{
+	-fx-background-color:#77AAFF;
+	-fx-background-radius:0,0;
+	-fx-z-index:5;
+}
+.buttonEffects:hover{
+	-fx-background-color:#66FF99;
+}
+.buttonEffects:pressed{
+	-fx-background-color:#CCFFCC;
+}
+.progressBarEffects{
+	-fx-accent:#66ff99;
+}
+.progressBarEffects > .track{
+	-fx-background-color:#77AAFF;
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane id="BorderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.FXController">
+  <bottom>
+    <VBox alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER">
+      <children>
+        <Button fx:id="cameraButton" alignment="CENTER" contentDisplay="LEFT" mnemonicParsing="false" onAction="#startCamera" text="Start Camera">
+          <font>
+            <Font size="14.0" />
+          </font>
+        </Button>
+        <Separator prefWidth="200.0" />
+        <Label fx:id="hsvCurrentValues" text="" />
+      </children>
+      <padding>
+        <Insets bottom="5.0" top="5.0" />
+      </padding>
+    </VBox>
+  </bottom>
+  <center>
+    <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+        <ImageView fx:id="originalFrame" fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
+        <VBox prefHeight="200.0" prefWidth="100.0">
+          <children>
+            <ImageView fx:id="maskImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="morphImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+          </children>
+        </VBox>
+      </children>
+    </HBox>
+  </center>
+  <right>
+    <TabPane prefHeight="200.0" prefWidth="300.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab fx:id="mCalTab" text="Marker Calibration">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <VBox alignment="TOP_LEFT" fillWidth="true" layoutX="75.0" layoutY="35.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="-1.0">
+                  <children>
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Hue Start" />
+                    <Slider id="MHueStart" fx:id="mHueStart" max="180.0" value="20.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Hue Stop" />
+                    <Slider id="HueStop" fx:id="mHueStop" max="180.0" value="50.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Saturation Start" />
+                    <Slider fx:id="mSatStart" max="255.0" value="60.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Saturation Stop" />
+                    <Slider fx:id="mSatStop" max="255.0" value="200.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Value Start" />
+                    <Slider fx:id="mValStart" max="255.0" value="50.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="-1.0" text="Value Stop" />
+                    <Slider fx:id="mValStop" max="255.0" value="200.0" />
+                  </children>
+                </VBox>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab fx:id="bCalTab" text="Block Calibration">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <VBox layoutX="75.0" layoutY="35.0" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="-1.0">
+                  <children>
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Hue Start" />
+                    <Slider fx:id="bHueStart" max="180.0" value="20.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Hue Stop" />
+                    <Slider fx:id="bHueStop" max="180.0" value="100.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Saturation Start" />
+                    <Slider fx:id="bSatStart" max="255.0" value="50.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Saturation Stop" />
+                    <Slider fx:id="bSatStop" max="255.0" value="200.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Value Start" />
+                    <Slider fx:id="bValStart" max="255.0" value="50.0" />
+                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefWidth="100.0" text="Value Stop" />
+                    <Slider fx:id="bValStop" max="255.0" value="200.0" />
+                  </children>
+                </VBox>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+  </right>
+  <stylesheets>
+    <URL value="@application.css" />
+  </stylesheets>
+  <top>
+    <HBox maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color:#77AAFF;&#10;-fx-border-color:#77AAFF;&#10;-fx-border-width:3px;">
+      <children>
+        <Button id="noteCaptureButton" fx:id="getNotesButton" maxHeight="1.7976931348623157E308" maxWidth="-1.0" mnemonicParsing="false" onAction="#getNotes" prefWidth="-1.0" style="" styleClass="buttonEffects" text="Get Notes">
+          <font>
+            <Font size="20.0" fx:id="x1" />
+          </font>
+          <stylesheets>
+            <URL value="@application.css" />
+          </stylesheets>
+        </Button>
+        <ProgressBar fx:id="progressBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="600.0" progress="0.0" styleClass="progressBarEffects">
+          <stylesheets>
+            <URL value="@application.css" />
+          </stylesheets>
+        </ProgressBar>
+        <Button fx:id="playNotesButton" alignment="CENTER_RIGHT" font="$x1" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#playNotes" styleClass="buttonEffects" text="Play Notes">
+          <stylesheets>
+            <URL value="@application.css" />
+          </stylesheets>
+        </Button>
+      </children>
+    </HBox>
+  </top>
+</BorderPane>
